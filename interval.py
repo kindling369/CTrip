@@ -34,6 +34,8 @@ class Interval(object):
 		else:
 			t = end.split(':')
 			self.end = Time(int(t[0]), int(t[1]))
+		print 'Interval(%02d:%02d -> %02d:%02d)' %(self.start.hour, self.start.minute, self.end.hour, self.end.minute)
+		
 
 def most_intervals_overlap_count(intervals):
 	'''count the maximum overlappes in a schedule.
