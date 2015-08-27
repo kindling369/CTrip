@@ -1,19 +1,18 @@
 #!/usr/bin/env python
 
 class Time(object):
-    def __init__(self, hour, minute):
-        '''Simple time wrapper.
+	def __init__(self, hour, minute):
+		'''Simple time wrapper.
 
         :param hour: Integer, from 0 to 24.
         :param minute: Integer, from 0 to 59.
         '''
-
-        self.hour = hour
-        self.minute = minute
+		self.hour = hour
+		self.minute = minute
 
 class Interval(object):
-    def __init__(self, start, end):
-        '''Interval represents a task on schedule. 
+	def __init__(self, start, end):
+		'''Interval represents a task on schedule. 
 
         :param start: Time, when the task starts.
         :param end: Time, when the task ends.
@@ -25,13 +24,19 @@ class Interval(object):
               >>> Interval(Time(0,0), Time(2,30))
               Interval(00:00 -> 02:30)
         '''
-        self.start = start
-        self.end = end
-    
-
+		if isinstance(start, Time):
+			self.start = start
+		else:
+		 	t = start.split(':')
+		 	self.start = Time(int(t[0]), int(t[1]))
+		if isinstance(end, Time):
+			self.end = end
+		else:
+			t = end.split(':')
+			self.end = Time(int(t[0]), int(t[1]))
 
 def most_intervals_overlap_count(intervals):
-    '''count the maximum overlappes in a schedule.
+	'''count the maximum overlappes in a schedule.
 
     tasks on the schedule may overlaps.For example, task A was scheduled
     from 06:00 to 08:00, and task B was scheduled from 07:30 to 09:00, then
@@ -50,4 +55,4 @@ def most_intervals_overlap_count(intervals):
     1
     '''
     # TODO: implement this function
-    pass
+	pass
