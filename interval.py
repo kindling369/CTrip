@@ -57,4 +57,22 @@ def most_intervals_overlap_count(intervals):
     1
     '''
     # TODO: implement this function
-	pass
+	dplist = [[0 for col in range(60)] for row in range(24)]
+	for interval in intervals:
+		if interval.start.hour == interval.end.hour:
+			j = interval.start.hour
+			for i in range(interval.start.minute, interval.end.minute):
+				dplist[j][i]=dplist[j][i]+1
+		if interval.start.hour < interval.end.hour:
+		  	j = interval.start.hour
+			for i in range(interval.start.minute, 60):
+				dplist[j][i]=dplist[j][i]+1
+			
+			for j in range(interval.start.hour+1, interval.end.hour):
+				for i in range(0, 60):
+					dplist[j][i]=dplist[j][i]+1
+			
+			j = interval.end.hour
+			for i in range(0, interval.end.minute):
+				dplist[j][i]=dplist[j][i]+1
+	print max(max(dplist))
